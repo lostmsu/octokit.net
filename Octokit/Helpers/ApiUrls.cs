@@ -19,6 +19,16 @@ namespace Octokit
         static readonly Uri _currentUserOwnedAndMemberIssues = new Uri("user/issues", UriKind.Relative);
 
         /// <summary>
+        /// Returns the <see cref="Uri"/> that returns specific page of all public repositories.
+        /// </summary>
+        /// <param name="since">Page index, starting with 1.</param>
+        /// <returns></returns>
+        public static Uri AllRepositories(int since)
+        {
+            return "repositories?since={0}".FormatUri(since);
+        }
+
+        /// <summary>
         /// Returns the <see cref="Uri"/> that returns all of the repositories for the currently logged in user in
         /// response to a GET request. A POST to this URL creates a new repository.
         /// </summary>

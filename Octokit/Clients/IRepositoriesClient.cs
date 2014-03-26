@@ -31,6 +31,11 @@ namespace Octokit
         IRepositoryCommentsClient RepositoryComments { get; }
 
         /// <summary>
+        /// Collection of all existing repositories.
+        /// </summary>
+        IPagedCollectionClient<Repository> All { get; }
+
+        /// <summary>
         /// Creates a new repository for the current user.
         /// </summary>
         /// <remarks>

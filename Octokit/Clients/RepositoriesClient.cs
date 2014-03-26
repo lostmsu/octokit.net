@@ -22,6 +22,7 @@ namespace Octokit
         /// <param name="apiConnection">An API connection</param>
         public RepositoriesClient(IApiConnection apiConnection) : base(apiConnection)
         {
+            All = new PagedCollectionClient<Repository>(apiConnection, ApiUrls.AllRepositories);
             CommitStatus = new CommitStatusClient(apiConnection);
             RepoCollaborators = new RepoCollaboratorsClient(apiConnection);
             Statistics = new StatisticsClient(apiConnection);
@@ -245,6 +246,11 @@ namespace Octokit
             var endpoint = "repos/{0}/{1}/readme".FormatUri(owner, name);
             return ApiConnection.GetHtml(endpoint, null);
         }
+
+        /// <summary>
+        /// Collection of all existing repositories.
+        /// </summary>
+        public IPagedCollectionClient<Repository> All { get; private set; }
 
         /// <summary>
         /// A client for GitHub's Commit Status API.
